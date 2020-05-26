@@ -29,7 +29,7 @@ import { Link } from 'react-router-dom';
         <h4>Comments</h4>
         <ul className="list-unstyled">
           {comments.map((comment) =>{
-            return(
+            return( 
               <li key={comment.id}>
                 <p>{comment.comment}</p>
                 <p>--{comment.author}</p>
