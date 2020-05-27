@@ -33,7 +33,7 @@ import { Link } from 'react-router-dom';
               <li key={comment.id}>
                 <p>{comment.comment}</p>
                 <p>--{comment.author}</p>
-                <p>Rating:{comment.rating}</p>
+                <p>Rating :{comment.rating}</p>
               </li>
             );
           })}
