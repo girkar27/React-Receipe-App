@@ -41,7 +41,7 @@ class Header extends Component {
       + " Remember: " + this.remember.checked);
     event.preventDefault();
 
-    }
+  }
 
 
   render() {
@@ -65,6 +65,11 @@ class Header extends Component {
                 <NavItem>
                   <NavLink className="nav-link" to='/contactus'><span className="fa fa-address-card fa-lg"></span> Contact Us</NavLink>
                 </NavItem>
+
+                <NavItem>
+                  <NavLink className="nav-link" to='/contactperson'><span className="fa fa-address-card fa-lg"></span>Contact Person</NavLink>
+                </NavItem>
+            
               </Nav>
               <Nav className="ml-auto" navbar>
                 <NavItem>
@@ -116,8 +121,8 @@ class Header extends Component {
         </Modal>
 
       </div>
-    );
+    );  
   }
-}
+} 
 
 export default Header;

@@ -1,8 +1,8 @@
 import React  from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Col, Button } from 'reactstrap';
 // import { DISHES } from '../shared/dishes';
 import { Link } from 'react-router-dom';
-
+import CommentForm from './CommentFormComponent';
 
 
   function RenderDish({dish}){
@@ -33,11 +33,12 @@ import { Link } from 'react-router-dom';
               <li key={comment.id}>
                 <p>{comment.comment}</p>
                 <p>--{comment.author}</p>
-                <p>Rating :{comment.rating}</p>
               </li>
+            
             );
           })}
         </ul>
+        <CommentForm />
       </div>
     );
   }

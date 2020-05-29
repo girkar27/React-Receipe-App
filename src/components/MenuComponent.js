@@ -19,7 +19,7 @@ function RenderMenuitem({ dish , onClick}){
 
 const Menu =(props)=>{
 
-  const menu = props.dishes.map((dish)=>{
+  const menu = props.dish1.map((dish)=>{
     return(
       <div key={dish.id} className="col-12 col-md-5 m-1">
         <RenderMenuitem dish={dish}/>

@@ -33,7 +33,7 @@ class Contact extends Component{
 			touched:{...this.state.touched, [field]:true}
 		});
 	}
-
+	
 	validate(firstname, lastname){
 		const errors = {
 			firstname: '',
@@ -121,9 +121,9 @@ class Contact extends Component{
                                     <Input type="text" id="firstname" name="firstname"
                                         placeholder="First Name"
                                         value={this.state.firstname}
-                                        valid={errors.firstname ===''}
-                                        invalid={errors.firstname !==''}
-                                        onBlur = {this.handleBlur('firstname')}
+                                        // valid={errors.firstname ===''}
+                                        // invalid={errors.firstname !==''}
+                                        // onBlur = {this.handleBlur('firstname')}
                                         onChange={this.handleInputChange} />
                                     <FormFeedback>{errors.firstname}</FormFeedback>
                                 </Col>
@@ -134,9 +134,9 @@ class Contact extends Component{
                                     <Input type="text" id="lastname" name="lastname"
                                         placeholder="Last Name"
                                         value={this.state.lastname}
-                                        valid={errors.lastname ===''}
-                                        invalid={errors.lastname !==''}
-                                        onBlur = {this.handleBlur('lastname')}
+                                        // valid={errors.lastname ===''}
+                                        // invalid={errors.lastname !==''}
+                                        // onBlur = {this.handleBlur('lastname')}
                                         onChange={this.handleInputChange} />
                                     <FormFeedback>{errors.lastname}</FormFeedback>
                                 </Col>                        
@@ -201,7 +201,7 @@ class Contact extends Component{
                </div>
 	        </div>    				
 	    );
-	}	
+	}		
 }
 	            	
 export default Contact;
