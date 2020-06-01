@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Col, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Col, Input, FormFeedback, Row, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Control, LocalForm, Errors } from 'react-redux-form';
+import { addComment } from '../redux/ActionCreators';
 
 
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -26,11 +28,11 @@ class CommentForm extends Component{
     	});
     }
  
-    handleForm(event){
+    handleForm(values) {
     	this.openForm();
-	    alert("Username: " + this.username.value + " Rating: " + this.rating.value
-      		+ " Comments: " + this.comment.value);
-	    event.preventDefault();
+    	// console.log('Current State is: ' + JSON.stringify(values));
+     //    alert('Current State is: ' + JSON.stringify(values));
+	    this.props.addComment ( this.props.dishId, values.rating, values.author, values.comment);
     }
 
 
@@ -50,43 +52,48 @@ class CommentForm extends Component{
 	            	<ModalHeader toggle={ this.openForm } >Submit Comment</ModalHeader>
 	          	<ModalBody>
 	          
-		            <Form onSubmit = { this.handleForm }>
-			            <FormGroup>
-			            	<Label className="col-sm-2" htmlFor="username">
-			            	<strong>Username:</strong></Label>
-			            	<div className="col-sm-12">
-			            	<Input type="text" id="username" name="username"
-			            		innerRef={(input) => this.username = input}	 />
-			            	</div>
-			            </FormGroup>
+		            <LocalForm onSubmit = { (values) => this.handleForm(values) }>
+                            <Row className="form-group">
+                                <Label htmlFor="author" md={2}><strong>Author</strong></Label>
+                                <Col md={10}>
+                                    <Control.text model=".author" id="author" name="author"
+                                        placeholder="Author"
+                                        className="form-control"  />
+                                </Col>
+                            </Row>
 
-			            <FormGroup>
-			            	<Label htmlFor="rating">Rating:</Label>
-			            	<Input type="select" id="rating" name="rating"
-			            		innerRef={(input) => this.rating = input}>
-			            		<option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </Input>
-			            </FormGroup>
+                            <Row className="form-group">
+                                <Label htmlFor="rating" md={2}><strong>Rating</strong></Label>
+                                <Col md={10}>
+                                    <Control.select model=".rating" name="rating"
+                                     
+                                        className="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </Control.select>
 
-			            <FormGroup row>
-				            <Col>
-				            	<Label htmlFor="comment">Comments:</Label>
-				            	<Input rows="6" type="textarea" id="comment" name="comment"
-				            		innerRef={(input) => this.comment = input} />
-				            </Col>
-			            </FormGroup>
-			            <FormGroup row>
-                            <Col md={{size: 10}}>
-	                            <Button type="submit" color="primary">
-	                            	Submit
-	                            </Button>
-                            </Col>
-                        </FormGroup>
-			       	</Form>
-			  		
+                                </Col>
+                            </Row>
+
+
+                            <Row className="form-group">
+                                <Label htmlFor="comment" md={2}><strong>Comment</strong></Label>
+                                <Col md={10}>
+                                    <Control.textarea rows="6" model=".comment" id="comment" name="comment"
+                                        placeholder="comments"
+                                        className="form-control"  />
+                                </Col>
+                            </Row>
+
+                            <Row className="form-group">
+                                
+                                <Col md={{size:10 , offset: 2}}>
+                                    <Button type="submit" color="primary">Add Comment</Button>
+                                </Col>
+                            </Row>
+                    </LocalForm>
 		       	</ModalBody>
 		       	</Modal>
 		    </div>
