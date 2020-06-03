@@ -4,13 +4,14 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, Breadcrum
 import { DISHES } from '../shared/dishes'; 
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 
 function RenderMenuitem({ dish , onClick}){
   return (
     <Card>
       <Link to={`/menu/${dish.id}`} > 
-      <CardImg width="100%" src={dish.image} alt={dish.name} />   
+      <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />   
       <CardImgOverlay>
         <CardTitle>{dish.name}</CardTitle>
       </CardImgOverlay>
@@ -19,7 +20,7 @@ function RenderMenuitem({ dish , onClick}){
   );
 }
 
-const Menu =(props)=>{
+const Menu = (props)=>{
 
   const menu = props.dishes.dishes.map((dish)=>{
       return(
@@ -32,7 +33,7 @@ const Menu =(props)=>{
 
   if (props.dishes.isLoading) {
       return(
-        <div className="container">
+        <div className="container ">
           <div className="row">            
             <Loading />
           </div>
@@ -64,7 +65,7 @@ const Menu =(props)=>{
             {menu}
           </div>
         </div>
-      );
+    );
 
 
 
