@@ -3,30 +3,18 @@ import * as ActionTypes from './ActionTypes';
 import { DISHES } from '../shared/dishes';
 import { baseUrl } from '../shared/baseUrl';
 
-// export function  addComment(dishId, rating, author, comment){
-// 	return({
-// 		type: ADD_COMMENT,
+
+// export const addComment = (dishId, rating, author, comment) => ({
+	
+// 		type: ActionTypes.ADD_COMMENT,
 // 		payload:{
+
 // 			dishId: dishId,
 // 			rating: rating,
 // 			author: author, 
 // 			comment: comment
 // 		}
-// 	});
-// }
-
-
-export const addComment = (dishId, rating, author, comment) => ({
-	
-		type: ActionTypes.ADD_COMMENT,
-		payload:{
-
-			dishId: dishId,
-			rating: rating,
-			author: author, 
-			comment: comment
-		}
-});
+// });
 
 
 export const dishesLoading = () => ({
@@ -86,9 +74,9 @@ export const fetchPromos = () => (dispatch) => {
     return fetch(baseUrl + 'promotions')
 	    .then(response => response.json())
 	    .then(promos => dispatch(addPromos(promos)));
-}
+}  
 
-export const promosLoading = () => ({
+	export const promosLoading = () => ({
     type: ActionTypes.PROMOS_LOADING
 });
 
@@ -101,6 +89,7 @@ export const addPromos = (promos) => ({
     type: ActionTypes.ADD_PROMOS,
     payload: promos
 });
+
 
 
 

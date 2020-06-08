@@ -20,12 +20,12 @@ class ContactPerson extends Component{
 	}
 
 
-	handleContactForm(values){
-        // console.log('Current State is: ' + JSON.stringify(values));
-        // alert('Current State is: ' + JSON.stringify(values));
+	// form1(values) {
+ //        console.log('Current State is: ' + JSON.stringify(values));
+ //        alert('Current State is: ' + JSON.stringify(values));
+ //        this.props.resetFeedbackForm(); 
         // event.preventDefault();
-        // this.props.resetFeedbackForm(); 
-	}
+	// }
 
 	render(){
 
@@ -77,7 +77,7 @@ class ContactPerson extends Component{
                       <h3>Feedback</h3>
                    </div>
                     <div className="col-12 col-md-9">
-                        <Form model="feedback"  onSubmit = {(values) => this.handleContactForm(values)}>
+                        <Form model="feedback"  >
                              <Row className="form-group">
                                 <Label htmlFor="firstname" md={2}>First Name</Label>
                                 <Col md={10}>
@@ -150,6 +150,8 @@ class ContactPerson extends Component{
                                         </Label>
                                     </div>
                                 </Col>
+
+
                                 <Col md={{size: 3, offset: 1}}>
                                     <Control.select model=".contactType" name="contactType"
                                         className="form-control">
@@ -167,10 +169,8 @@ class ContactPerson extends Component{
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Col md={{size:10, offset: 2}}>
-                                    <Button type="submit" color="primary">
-                                        Send Feedback
-                                    </Button>
+                                <Col md={{size:10 , offset: 2}}>
+                                    <Button type="submit" color="primary">Add Feedback</Button>
                                 </Col>
                             </Row>
                         </Form>

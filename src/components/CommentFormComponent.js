@@ -48,8 +48,8 @@ class CommentForm extends Component{
 				        	Edit Comment 
 			        </Button>
 	            </div>
-	           	<Modal isOpen ={this.state.isFormOpen} toggle={ this.openForm }>
-	            	<ModalHeader toggle={ this.openForm } >Submit Comment</ModalHeader>
+	           	<Modal isOpen ={ this.state.isFormOpen } toggle={ this.openForm }>
+	            	<ModalHeader toggle = { this.openForm } >Submit Comment</ModalHeader>
 	          	<ModalBody>
 	          
 		            <LocalForm onSubmit = { (values) => this.handleForm(values) }>
