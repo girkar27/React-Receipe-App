@@ -6,43 +6,55 @@ import CommentForm from './CommentFormComponent';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+
   function RenderDish({dish}) {
     
      	return (
-        <div className="col-12 col-md-5 m-1">
-          <Card>
-      	    <CardImg top src={ baseUrl + dish.image } alt={dish.name} />
-      	    <CardBody>
-      	      <CardTitle>{dish.name}</CardTitle>
-      	    	<CardText>{dish.description}</CardText>
-      	    </CardBody>
-      	  </Card>
+          <div className="col-12 col-md-5 m-1">
+          <FadeTransform
+              in
+              transformProps={{
+                exitTransform: 'scale(0.5) translateY(-50%)'
+            }}>
+            <Card>
+        	    <CardImg top src={ baseUrl + dish.image } alt={dish.name} />
+        	    <CardBody>
+        	      <CardTitle>{dish.name}</CardTitle>
+        	    	<CardText>{dish.description}</CardText>
+        	    </CardBody>
+        	  </Card>
+        </FadeTransform>
         </div>
     	); 	
   }
 
 
 
-  function RenderComments({ comments, addComment, dishId }){
-    if(comments !=null)
+  function RenderComments({ comments, postComment, dishId }){
+    if(comments !=null){
     // console.log(comments)
-    return(
-      <div className="col-12 col-md-5 m-1">
-        <h4>Comments</h4>
-        <ul className="list-unstyled">
-          {comments.map((comment) =>{
-            return( 
-              <li key={comment.id}>
-                <p>{comment.comment}</p>
-                <p>--{comment.author}</p>
-              </li>
-            
-            );
-          })}
-        </ul>
-        <CommentForm dishId={dishId} addcomment={addComment} />
-      </div>
-    );
+      return(
+        <div className="col-12 col-md-5 m-1">
+          <h4>Comments</h4>
+          <ul className="list-unstyled">
+        <Stagger in>      
+            {comments.map((comment) =>{
+              return( 
+                <Fade in>
+                <li key={comment.id}>
+                  <p>{comment.comment}</p>
+                  <p>--{comment.author}</p>
+                </li>
+                </Fade>
+              );
+              
+            })}
+      </Stagger>  
+          </ul>
+          <CommentForm dishId={dishId} postComment={postComment} />
+        </div>
+    )};
   }
 
 
@@ -74,6 +86,7 @@ import { baseUrl } from '../shared/baseUrl';
     else if (props.dish != null) 
     // console.log(props.dish)
       return(
+
         <div className="container">
           <div className="row">
             <Breadcrumb>
@@ -90,7 +103,7 @@ import { baseUrl } from '../shared/baseUrl';
             <RenderDish dish = {props.dish} />
             <RenderComments 
               comments = {props.comments}
-              addComment ={props.addComment}
+              postComment ={props.postComment}
               dishId={props.dish.id}
                 />
               
@@ -110,3 +123,4 @@ import { baseUrl } from '../shared/baseUrl';
 
 export default DishDetail;
   
+
