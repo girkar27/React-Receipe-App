@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Col, Input, FormFeedback, Row, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
-import { addComment } from '../redux/ActionCreators';
+// import { addComment } from '../redux/ActionCreators';
 
 
 const maxLength = (len) => (val) => !(val) || (val.length <= len);

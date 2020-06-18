@@ -32,7 +32,7 @@ export const postComment = (dishId, rating, author, comment) =>(dispatch) =>{
             if (response.ok) {
               return response;
             }
-             else {
+            else {
               var error = new Error('Error ' + response.status + ': ' + response.statusText);
               error.response = response;
               throw error;
@@ -187,5 +187,88 @@ export const addPromos = (promos) => ({
 //     payload: leaders
 // });
 
+//  employees------------------------------------------------------------------------------
 
 
+export const empFailed = (errmess) => ({
+    type: ActionTypes.EMP_FAILED,
+    payload: errmess
+});
+
+export const addEmp = (employees) => ({
+    type: ActionTypes.EMP_ADD,
+    payload: employees
+});
+
+
+export const fetchEmp = () => (dispatch) => {    
+    return fetch(baseUrl + 'employees')
+        .then(response => {
+            if (response.ok) {
+                return response;
+            } 
+            else {
+                var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            var errmess = new Error(error.message);
+            throw errmess;
+        })
+        .then(response => response.json())
+        .then(employees => dispatch(addEmp(employees)))
+        .catch(error => dispatch(empFailed(error.message)));
+};
+
+
+
+
+
+//---------------------------------------------------
+
+
+
+export const addemployee = (added_employee) => ({
+    type: ActionTypes.ADD_EMPLOYEE,
+    payload: added_employee
+
+});
+
+
+export const postEmployee = (name, designation, age, skills) => (dispatch) => {
+    const newEmployee = {
+        name: name,
+        designation: designation,
+        age: age,
+        skills: skills
+        // featured: featured
+    };
+
+        return fetch(baseUrl + 'employees', {
+        method: "POST",
+        body: JSON.stringify(newEmployee),
+        headers: {
+          "Content-Type": "application/json"
+        }, 
+
+        credentials: "same-origin"
+        })
+            .then(response => {
+                if (response.ok) {
+                  return response;
+                }
+                else {
+                  var error = new Error('Error ' + response.status + ': ' + response.statusText);
+                  error.response = response;
+                  throw error;
+                }
+            },
+            error => {
+                throw error;
+            })
+            .then(response => response.json())
+            .then(added_employee => dispatch(addemployee(added_employee)))
+            .catch(error => { console.log('post employee', error.message); alert('Your employee could not be posted\nError: '+error.message); });
+};

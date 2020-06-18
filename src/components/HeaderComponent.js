@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Button, Modal, ModalHeader, ModalBody,
-    Form, FormGroup, Input, Label } from 'reactstrap';
+    Form, FormGroup, Input, Label, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
@@ -63,9 +63,25 @@ class Header extends Component {
                   <NavLink className="nav-link"  to='/menu'><span className="fa fa-list fa-lg"></span> Menu</NavLink>
                 </NavItem>
 
-                <NavItem>
-                  <NavLink className="nav-link" to='/contactperson'><span className="fa fa-address-card fa-lg"></span>Contact Person</NavLink>
-                </NavItem>
+                <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  <span className="fa fa-chevron-right fa-lg"></span> Forms
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    <NavLink className="nav-link" to='/contactperson'><span className="fa fa-address-card fa-lg"></span> Contact Person</NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink className="nav-link" to='/attributes'><span className="fa fa-envelope fa-lg"></span> Skills Form</NavLink>
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    <NavLink className="nav-link"  to='/home'>Reset</NavLink>
+                  </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+
+
             
               </Nav>
               <Nav className="ml-auto" navbar>

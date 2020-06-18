@@ -7,3 +7,12 @@ export const InitialFeedback = {
     contactType: 'Tel.',
     message: ''
 };
+
+
+export const EmptyAttribute = {
+    name: '',
+    designation: '',
+    age: '',
+    skills: 'python',
+    // featured: false
+};

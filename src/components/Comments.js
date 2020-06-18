@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react';	
 import { Card, CardImg, CardText, CardBody, CardTitle, CardHeader, Breadcrumb, BreadcrumbItem, Col, Button } from 'reactstrap';
 import { baseUrl } from '../shared/baseUrl';
 import { Link } from 'react-router-dom';
@@ -19,22 +19,19 @@ function CommentCard({ comment }){
 
 
 
-function Promotions({ promos }){
+function Employees({ emp }){
 	return(
-		<div>
-		<h3>Promotions</h3>
-		<Card className=" mb-3 ">   
-			<CardHeader className="bg-primary text-white">Name: {promos.name}</CardHeader>
-			<CardImg width="100%" src={baseUrl + promos.image} alt={promos.name} />
-			
+ 		<Card className=" mb-3 ">   
+			<CardHeader className="bg-primary text-white">Candidate Name: {emp.name}</CardHeader>
 			<CardBody>
-      	    	<CardText>price : {promos.price} </CardText>
-      	    	<CardText>Label : {promos.description} </CardText>
+      	    	<CardText>Age : {emp.age} </CardText>
+      	    	<CardText>skills : {emp.skills} </CardText>
 			</CardBody>
 	    </Card>
-	    </div>
-	);
+	   
+ 	);
 }
+
 
 function RenderCommentCard(props){
 	const comment1 = props.comments_main.map((comment)=>{
@@ -45,9 +42,9 @@ function RenderCommentCard(props){
 		
 	});
 
-	const promo1 = props.promotions.map((promos)=>{
+	const emp1 = props.employees.map((emp)=>{
 		return(
-			<Promotions promos={ promos } />
+			<Employees emp={ emp } />
 		);
 	});
 			
@@ -67,7 +64,8 @@ function RenderCommentCard(props){
 						{comment1}
 				</div>
 				<div className="col-12 col-md-4">
-					{ promo1 }
+					<h3>Employees Details</h3>
+						{ emp1 }
 				</div>		
 				
 			</div>

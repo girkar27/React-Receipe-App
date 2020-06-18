@@ -6,6 +6,7 @@ import Contact from './ContactComponent';
 import ContactPerson from './ContactPersonComponent';
 import About from './AboutComponent';
 import DishDetail from './DishdetailComponent'; 
+import Attributes from './Attributes'; 
 
 import Header from './HeaderComponent';
 import Logout from './Logout';
@@ -14,7 +15,8 @@ import RenderCommentCard from './Comments';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders, postEmployee, fetchEmp } from '../redux/ActionCreators';
+// import * as ActionTypes from '../redux/ActionTypes'; 
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -26,7 +28,8 @@ const mapStateToProps = (state) => {
     dishes: state.dishes,// from redux/configstore //methods and states from reducers available
     comments: state.comments,
     promotions: state.promotions,
-    leaders: state.leaders
+    leaders: state.leaders,
+    employees: state.employees
   }
 }
 
@@ -36,11 +39,13 @@ const mapDispatchToProps = (dispatch) => ({
   postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
   fetchDishes:() => { dispatch(fetchDishes()) },
   fetchComments:() => { dispatch(fetchComments()) },
+  fetchPromos:() => { dispatch(fetchPromos()) },
+  fetchEmp:() => { dispatch(fetchEmp()) },
+  postEmployee: (name, designation, age, skills) => dispatch(postEmployee(name, designation, age, skills)),
+  resetFeedbackForm:() => { dispatch(actions.reset('attributes'))}
   // fetchLeaders:() => { dispatch(fetchLeaders()) },
-  fetchPromos:() => { dispatch(fetchPromos()) }
-  // resetFeedbackForm:() => { dispatch(actions.reset('feedback'))}
-  
 });
+  
 
   
 
@@ -56,6 +61,8 @@ class Main extends Component {
     this.props.fetchDishes();  //data from json server
     this.props.fetchComments();
     this.props.fetchPromos();
+    this.props.fetchEmp();
+    this.props.postEmployee();
     // this.props.fetchLeaders();
   }
 
@@ -92,7 +99,7 @@ class Main extends Component {
     const CommentCard = () =>{
       return(
         <RenderCommentCard comments_main = {this.props.comments.comments} 
-          promotions = { this.props.promotions.promotions } />
+          employees = { this.props.employees.employees } />
       );
 
     }
@@ -112,6 +119,7 @@ class Main extends Component {
                 <Route exact path='/contactperson' component= {ContactPerson}   />
                 <Route exact path='/commentcard' component={ CommentCard } />
                 <Route exact path='/logout' component={ Logout } />
+                <Route exact path='/attributes' component={() => <Attributes postEmployee= {this.props.postEmployee}  resetFeedbackForm= {this.props.resetFeedbackForm}/>  } />
 
               </Switch>
             </CSSTransition>
