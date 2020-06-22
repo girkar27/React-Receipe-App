@@ -24,8 +24,22 @@ function Employees({ emp }){
  		<Card className=" mb-3 ">   
 			<CardHeader className="bg-primary text-white">Candidate Name: {emp.name}</CardHeader>
 			<CardBody>
-      	    	<CardText>Age : {emp.age} </CardText>
-      	    	<CardText>skills : {emp.skills} </CardText>
+      	    	<CardText><strong>Age:</strong> {emp.age} </CardText>
+      	    	<CardText><strong>skills:</strong> {emp.skills} </CardText>
+			</CardBody>
+	    </Card>
+	   
+ 	);
+}
+
+function Python_data({ api }){
+	return(
+ 		<Card className=" mb-3 ">   
+			<CardHeader className="bg-primary text-white">FLASK API DATA</CardHeader>
+			<CardBody>
+      	    	<CardText><strong>ID:</strong> {api.id}</CardText>
+      	    	<CardText><strong>Firstname:</strong> {api.firstname} </CardText>
+      	    	<CardText><strong>Lastname:</strong> {api.lastname} </CardText>
 			</CardBody>
 	    </Card>
 	   
@@ -38,6 +52,7 @@ function RenderCommentCard(props){
 		return(
 
 			<CommentCard comment = { comment } />
+
 		);
 		
 	});
@@ -45,6 +60,13 @@ function RenderCommentCard(props){
 	const emp1 = props.employees.map((emp)=>{
 		return(
 			<Employees emp={ emp } />
+		);
+	});
+
+	const add_api = props.api.map((api1)=>{
+		return(
+			<Python_data api={ api1 } />
+			// console.log(api1)
 		);
 	});
 			
@@ -59,13 +81,17 @@ function RenderCommentCard(props){
 	  	</div>
 
 			<div className="row">
-				<div className="col-12 col-md-7">
+				<div className="col-12 col-md-4">
 					<h3>Comments</h3>
 						{comment1}
 				</div>
 				<div className="col-12 col-md-4">
 					<h3>Employees Details</h3>
 						{ emp1 }
+				</div>
+				<div className="col-12 col-md-4">
+					<h3>Python Details</h3>
+						{add_api}
 				</div>		
 				
 			</div>

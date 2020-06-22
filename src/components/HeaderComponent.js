@@ -3,6 +3,7 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Button, Modal, ModalHeader, ModalBody,
     Form, FormGroup, Input, Label, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import Python_postform from './PythonFormComponent';
 
 class Header extends Component {
 
@@ -12,12 +13,13 @@ class Header extends Component {
     this.state = { 
       isNavOpen: false,
       isModalOpen:  false
-
     };
+
 
     this.toggleNav = this.toggleNav.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.handlelogin = this.handlelogin.bind(this);
+    // this.pythoncomponent = this.pythoncomponent.bind(this);
 
   }
 
@@ -28,6 +30,10 @@ class Header extends Component {
 
     });
   }
+
+
+  
+
 
   toggleNav(){
     this.setState ({
@@ -93,6 +99,13 @@ class Header extends Component {
                   <Button color="link" href="/logout" className="mx-3"><span className="fa fa-sign-out"></span>Logout</Button>
                 </NavItem>
                 </Nav>
+
+                <Nav class="ml-3" navbar>
+                <NavItem>
+                    <Python_postform postapi = { this.props.post_api }
+                        reset_post_api_form = {this.props.reset_post_api_form}  />
+                </NavItem>
+                </Nav>
               
               </Nav>                 
                 
@@ -124,7 +137,7 @@ class Header extends Component {
                 <Label htmlFor="password">Password</Label>
                 <Input type="text" id="password" name="password"
                   innerRef={(input) => this.password = input} />
-              </FormGroup>
+              </FormGroup>      
 
               <FormGroup check>
                 <Label check>  
@@ -139,6 +152,8 @@ class Header extends Component {
             </Form>
           </ModalBody>
         </Modal>
+
+
 
       </div>
     );  

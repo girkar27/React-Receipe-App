@@ -14,5 +14,15 @@ export const EmptyAttribute = {
     designation: '',
     age: '',
     skills: 'python',
-    // featured: false
+    featured: false
 };
+
+
+export const python_post_api = {
+    "firstname":" ",
+    "lastname":" ",
+    "age":" ",
+    "skills": "python",
+    "address":" "
+
+}

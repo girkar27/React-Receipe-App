@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem,
             Button, Row, Col, Label } from 'reactstrap';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Control, Form } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 
 
@@ -17,7 +17,7 @@ class Attributes extends Component{
 
 	formsubmit(values) {
 
-        this.props.postEmployee( values.name, values.designation, values.age, values.skills);
+        this.props.postEmployee( values.name, values.designation, values.age, values.skills, values.featured);
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Entry Added to the server:  ' + JSON.stringify(values));
         this.props.resetFeedbackForm(); 	
@@ -49,10 +49,10 @@ class Attributes extends Component{
                                     <Control.text model=".name" id="name" name="name"
                                         placeholder="full name"
                                         className="form-control"/>
-   								</Col>
-   							</Row>
+   								              </Col>
+   							            </Row>
 
-   							<Row className="form-group">
+   							            <Row className="form-group">
                                 <Label htmlFor="skill1" md={2}>Designation</Label>
                                 <Col md={10}>
                                     <Control.text model=".designation" id="designation" name="designation"
@@ -80,6 +80,16 @@ class Attributes extends Component{
                                         <option>React</option>
                                         <option>Magento</option>
                                     </Control.select>
+                                </Col>
+                                <Col md={{size: 2, offset: 4}}>
+                                    <div className="form-check">
+                                        <Label check>
+                                            <Control.checkbox model=".featured" name="featured"
+                                                className="form-check-input"
+                                                 /> {' '}
+                                                <strong>featured?</strong>
+                                        </Label>
+                                    </div>
                                 </Col>
                             </Row>
 

@@ -1,7 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 // import { ADD_COMMENT } from './ActionTypes';
-import { DISHES } from '../shared/dishes';
-import { baseUrl } from '../shared/baseUrl';
+import { baseUrl, json_placeholder } from '../shared/baseUrl';
+// import axios from axios
 
 
 export const addComment = (added_comment) => ({
@@ -211,7 +211,7 @@ export const fetchEmp = () => (dispatch) => {
                 var error = new Error('Error ' + response.status + ': ' + response.statusText);
                 error.response = response;
                 throw error;
-            }
+            }  
         },
         error => {
             var errmess = new Error(error.message);
@@ -237,13 +237,13 @@ export const addemployee = (added_employee) => ({
 });
 
 
-export const postEmployee = (name, designation, age, skills) => (dispatch) => {
+export const postEmployee = (name, designation, age, skills, featured) => (dispatch) => {
     const newEmployee = {
         name: name,
         designation: designation,
         age: age,
-        skills: skills
-        // featured: featured
+        skills: skills,
+        featured: featured
     };
 
         return fetch(baseUrl + 'employees', {
@@ -272,3 +272,9 @@ export const postEmployee = (name, designation, age, skills) => (dispatch) => {
             .then(added_employee => dispatch(addemployee(added_employee)))
             .catch(error => { console.log('post employee', error.message); alert('Your employee could not be posted\nError: '+error.message); });
 };
+
+
+
+//====================================================================flask api thunks===============
+
+

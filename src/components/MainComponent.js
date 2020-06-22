@@ -16,10 +16,11 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders, postEmployee, fetchEmp } from '../redux/ActionCreators';
+import { fetchApi, post_api } from '../redux/Api_actioncreators';
 // import * as ActionTypes from '../redux/ActionTypes'; 
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-
+// import React, { useEffect } from 'react';
 
 
 
@@ -29,7 +30,8 @@ const mapStateToProps = (state) => {
     comments: state.comments,
     promotions: state.promotions,
     leaders: state.leaders,
-    employees: state.employees
+    employees: state.employees,
+    api: state.api
   }
 }
 
@@ -41,8 +43,11 @@ const mapDispatchToProps = (dispatch) => ({
   fetchComments:() => { dispatch(fetchComments()) },
   fetchPromos:() => { dispatch(fetchPromos()) },
   fetchEmp:() => { dispatch(fetchEmp()) },
-  postEmployee: (name, designation, age, skills) => dispatch(postEmployee(name, designation, age, skills)),
-  resetFeedbackForm:() => { dispatch(actions.reset('attributes'))}
+  fetchApi:() => { dispatch(fetchApi()) },
+  postEmployee: (name, designation, age, skills, featured) => dispatch(postEmployee(name, designation, age, skills, featured)),
+  post_api: (firstname, lastname, age, skills, address) => dispatch(post_api(firstname, lastname, age, skills, address)),
+  resetFeedbackForm:() => { dispatch(actions.reset('attributes'))},
+  reset_post_api_form:() => { dispatch(actions.reset('python_post_api'))}
   // fetchLeaders:() => { dispatch(fetchLeaders()) },
 });
   
@@ -62,7 +67,8 @@ class Main extends Component {
     this.props.fetchComments();
     this.props.fetchPromos();
     this.props.fetchEmp();
-    this.props.postEmployee();
+    this.props.fetchApi();
+    // this.props.postEmployee();
     // this.props.fetchLeaders();
   }
 
@@ -99,7 +105,8 @@ class Main extends Component {
     const CommentCard = () =>{
       return(
         <RenderCommentCard comments_main = {this.props.comments.comments} 
-          employees = { this.props.employees.employees } />
+          employees = { this.props.employees.employees }
+          api = {this.props.api.api} />
       );
 
     }
@@ -107,7 +114,7 @@ class Main extends Component {
 
     return (
       <div className="App">
-        <Header/>
+        <Header post_api= {this.props.post_api} reset_post_api_form= {this.props.reset_post_api_form} />
         <TransitionGroup>
             <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
               <Switch location={this.props.location}>

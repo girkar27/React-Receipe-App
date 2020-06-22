@@ -4,12 +4,13 @@ import { Comments } from './comments';
 import { Leaders } from './leaders';
 import { Promotions } from './promotions';
 import { Employees } from './employees';
+import { Api } from './api';
 
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
 import { createForms } from 'react-redux-form';
-import { InitialFeedback, EmptyAttribute } from './forms';
+import { InitialFeedback, EmptyAttribute, python_post_api } from './forms';
 
 
  
@@ -23,10 +24,12 @@ export const ConfigureStore = () => {
             leaders: Leaders,
             promotions: Promotions,
             employees: Employees,
+            api: Api,
 
             ...createForms({
             	feedback: InitialFeedback,
-            	attributes: EmptyAttribute
+            	attributes: EmptyAttribute,
+                python_post_api: python_post_api
             })
 
         }),
