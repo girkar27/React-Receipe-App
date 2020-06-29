@@ -26,3 +26,16 @@ export const python_post_api = {
     "address":" "
 
 }
+
+export const python_put_api = {
+    "id":"",
+    "firstname":" ",
+    "lastname":" ",
+    "age":" ",
+    "skills": "python",
+    "address":" "
+
+}
+export const python_delete_api = {
+    "id":""
+}

@@ -14,13 +14,19 @@ import Footer from './FooterComponent';
 import RenderCommentCard from './Comments';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders, postEmployee, fetchEmp } from '../redux/ActionCreators';
-import { fetchApi, post_api } from '../redux/Api_actioncreators';
+import { fetchApi, post_api, put_api, delete_api } from '../redux/Api_actioncreators';
 // import * as ActionTypes from '../redux/ActionTypes'; 
 import { actions } from 'react-redux-form';
+
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 // import React, { useEffect } from 'react';
+
+
+import Display_api_data from './Display_database'; 
+import Update_database_form from './Update_database'; 
+import Delete_database_form from './PY_Delete_database'; 
+
 
 
 
@@ -46,8 +52,11 @@ const mapDispatchToProps = (dispatch) => ({
   fetchApi:() => { dispatch(fetchApi()) },
   postEmployee: (name, designation, age, skills, featured) => dispatch(postEmployee(name, designation, age, skills, featured)),
   post_api: (firstname, lastname, age, skills, address) => dispatch(post_api(firstname, lastname, age, skills, address)),
-  resetFeedbackForm:() => { dispatch(actions.reset('attributes'))},
-  reset_post_api_form:() => { dispatch(actions.reset('python_post_api'))}
+  put_api: (id, firstname, lastname, age, skills, address) => dispatch(put_api(id, firstname, lastname, age, skills, address)),
+  delete_api: (id) => dispatch(delete_api(id)),
+  resetFeedbackForm:() => { dispatch(actions.reset('attributes'))}, 
+  reset_post_api_form:() => { dispatch(actions.reset('python_post_api'))},
+  reset_put_api_form:() => { dispatch(actions.reset('python_put_api'))}
   // fetchLeaders:() => { dispatch(fetchLeaders()) },
 });
   
@@ -107,9 +116,33 @@ class Main extends Component {
         <RenderCommentCard comments_main = {this.props.comments.comments} 
           employees = { this.props.employees.employees }
           api = {this.props.api.api} />
-      );
+      );  
 
     }
+
+
+    const Database_display = ({ match }) =>{
+      return(
+        <Display_api_data api = {this.props.api.api.filter((api)=> api.id === parseInt(match.params.user_id,10))[0]} />       
+      );
+    }
+
+    const Database_update = ({ match }) =>{
+      return(
+        <Update_database_form api = {this.props.api.api.filter((api)=> api.id === parseInt(match.params.user_id,10))[0]}
+          put_api = {this.props.put_api} 
+          reset_put_api_form =  {this.props.reset_put_api_form} />       
+      );
+    }
+
+
+    const Database_delete = ({ match }) =>{
+      return(
+        <Delete_database_form delete_api = {this.props.delete_api}
+          api = {this.props.api.api.filter((api)=> api.id === parseInt(match.params.user_id,10))[0]} />       
+      );
+    }
+
 
 
     return (
@@ -127,6 +160,9 @@ class Main extends Component {
                 <Route exact path='/commentcard' component={ CommentCard } />
                 <Route exact path='/logout' component={ Logout } />
                 <Route exact path='/attributes' component={() => <Attributes postEmployee= {this.props.postEmployee}  resetFeedbackForm= {this.props.resetFeedbackForm}/>  } />
+                <Route path='/display_user/:user_id' component={ Database_display } />
+                <Route path='/update_user/:user_id' component={ Database_update } />
+                <Route path='/delete_user/:user_id' component={ Database_delete } />
 
               </Switch>
             </CSSTransition>

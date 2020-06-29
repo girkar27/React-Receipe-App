@@ -16,5 +16,7 @@ export const EMP_ADD = 'EMP_ADD';
 export const API_FAILED = 'API_FAILED';
 export const API_ADD = 'API_ADD';
 export const ADD_POST_API = 'ADD_POST_API';
+export const ADD_PUT_API = 'ADD_PUT_API';
+export const DELETE_API = 'DELETE_API';
 // export const LEADERS_FAILED = 'LEADERS_FAILED';
 // export const LEADERS_LOADING = 'LEADERS_LOADING';

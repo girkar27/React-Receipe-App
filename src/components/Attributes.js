@@ -20,7 +20,7 @@ class Attributes extends Component{
         this.props.postEmployee( values.name, values.designation, values.age, values.skills, values.featured);
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Entry Added to the server:  ' + JSON.stringify(values));
-        this.props.resetFeedbackForm(); 	
+        this.props.reset_put_api_form(); 	
         // event.preventDefault();
 	}
 

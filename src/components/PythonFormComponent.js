@@ -21,7 +21,7 @@ class Python_postform extends Component {
       		python_form_open: !this.state.python_form_open
 
     	});
-  	}
+    }
 
   	formsubmit(values) {
 

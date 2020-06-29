@@ -3,21 +3,6 @@ import { Card, CardImg, CardText, CardBody, CardTitle, CardHeader, Breadcrumb, B
 import { baseUrl } from '../shared/baseUrl';
 import { Link } from 'react-router-dom';
 
-function CommentCard({ comment }){
- 	return(
- 		<Card className=" mb-3 ">   
-			<CardHeader className="bg-secondary text-white">Author: {comment.author}</CardHeader>
-			<CardBody>
-      	    	<CardText>Comment : {comment.comment} </CardText>
-      	    	<CardText>Rating : {comment.rating} </CardText>
-			</CardBody>
-	    </Card>
-	   
- 	);
-
-}
-
-
 
 function Employees({ emp }){
 	return(
@@ -34,13 +19,36 @@ function Employees({ emp }){
 
 function Python_data({ api }){
 	return(
- 		<Card className=" mb-3 ">   
-			<CardHeader className="bg-primary text-white">FLASK API DATA</CardHeader>
-			<CardBody>
-      	    	<CardText><strong>ID:</strong> {api.id}</CardText>
-      	    	<CardText><strong>Firstname:</strong> {api.firstname} </CardText>
-      	    	<CardText><strong>Lastname:</strong> {api.lastname} </CardText>
-			</CardBody>
+ 		<Card className=" mb-2">    
+			<CardHeader><strong>ID:</strong> {api.id}{'  -- '}{api.firstname}{' '}{api.lastname} 
+      	    	<div  className="row">
+					<div className= "col-12 col-sm-2">      	    	
+					    <Link to={`/display_user/${api.id}`}>
+				        <Button type="submit" color="info">
+					        <span className="fa fa-pencil fa-sm"></span>{' '}
+					        	View
+				        </Button>
+				        </Link>
+			        </div>
+      	    		
+
+	      	    	<div className= "col-12 col-sm-2">
+	      	    		<Link to={`/update_user/${api.id}`}>
+				        <Button type="submit" color="secondary" onClick="">
+					     	Update
+				        </Button>
+				        </Link>
+	      	    	</div>
+	      	    	<div className= "col-12 col-sm-2">
+	      	    		<Link to={`/delete_user/${api.id}`}>
+				        <Button type="submit" color="danger" onClick="">
+					        <span className="fa fa-trash fa-sm"></span>Delete
+				        </Button>
+				        </Link>
+	      	    	</div>
+      	    	</div>
+			</CardHeader>
+
 	    </Card>
 	   
  	);
@@ -48,14 +56,6 @@ function Python_data({ api }){
 
 
 function RenderCommentCard(props){
-	const comment1 = props.comments_main.map((comment)=>{
-		return(
-
-			<CommentCard comment = { comment } />
-
-		);
-		
-	});
 
 	const emp1 = props.employees.map((emp)=>{
 		return(
@@ -79,17 +79,12 @@ function RenderCommentCard(props){
 	            <BreadcrumbItem active>Comments</BreadcrumbItem>
 	        </Breadcrumb>
 	  	</div>
-
-			<div className="row">
-				<div className="col-12 col-md-4">
-					<h3>Comments</h3>
-						{comment1}
-				</div>
+	  		<div className="row">
 				<div className="col-12 col-md-4">
 					<h3>Employees Details</h3>
 						{ emp1 }
 				</div>
-				<div className="col-12 col-md-4">
+				<div className="col-12 col-md-8">
 					<h3>Python Details</h3>
 						{add_api}
 				</div>		

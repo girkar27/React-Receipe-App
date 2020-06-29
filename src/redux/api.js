@@ -19,6 +19,13 @@ export function Api(state = {
             var entry =  action.payload;
             return {...state, api: state.api.concat(entry)};
 
+        case ActionTypes.ADD_PUT_API:
+            var updated_entry =  action.payload;
+            return {...state, api: state.api.concat(updated_entry)};
+        
+        case ActionTypes.DELETE_API:
+            return {...state, errMess: null, api: action.payload};            
+
 
         default:
           	return state;	

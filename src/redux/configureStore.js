@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
 import { createForms } from 'react-redux-form';
-import { InitialFeedback, EmptyAttribute, python_post_api } from './forms';
+import { InitialFeedback, EmptyAttribute, python_post_api, python_put_api, python_delete_api } from './forms';
 
 
  
@@ -29,7 +29,9 @@ export const ConfigureStore = () => {
             ...createForms({
             	feedback: InitialFeedback,
             	attributes: EmptyAttribute,
-                python_post_api: python_post_api
+                python_post_api: python_post_api,
+                python_put_api: python_put_api,
+                python_delete_api: python_delete_api
             })
 
         }),
