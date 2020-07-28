@@ -22,6 +22,6 @@ export const Promotions = (state = {
 
 
         default:
-          return state;
+            return state;
       }
 };

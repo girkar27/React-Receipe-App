@@ -93,7 +93,7 @@ export const api_put_entry = (update_entry) => ({
 });
 
 export const put_api = (id, firstname, lastname, age, skills, address) => (dispatch) => {
-    const update_database_entry = { 
+    const update_database_entry = {  
         firstname: firstname,
         lastname: lastname,
         age: age,

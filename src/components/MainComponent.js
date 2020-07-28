@@ -28,6 +28,11 @@ import Update_database_form from './Update_database';
 import Delete_database_form from './PY_Delete_database'; 
 
 
+import HookApi from './HookApi'; 
+
+
+
+
 
 
 const mapStateToProps = (state) => {
@@ -163,6 +168,8 @@ class Main extends Component {
                 <Route path='/display_user/:user_id' component={ Database_display } />
                 <Route path='/update_user/:user_id' component={ Database_update } />
                 <Route path='/delete_user/:user_id' component={ Database_delete } />
+                <Route path='/hookapi' component={ HookApi } />
+
 
               </Switch>
             </CSSTransition>

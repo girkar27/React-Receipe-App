@@ -4,6 +4,7 @@ import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Form, FormGroup, Input, Label, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import Python_postform from './PythonFormComponent';
+import Hook from './Hook';
 
 class Header extends Component {
 
@@ -104,6 +105,11 @@ class Header extends Component {
                 <NavItem>
                     <Python_postform postapi = { this.props.post_api }
                         reset_post_api_form = {this.props.reset_post_api_form}  />
+                </NavItem>
+                </Nav>
+                <Nav class="ml-3" navbar>
+                <NavItem>
+                    <Hook/>
                 </NavItem>
                 </Nav>
               
